@@ -21,8 +21,8 @@ $IPT -A INPUT -i lo -j ACCEPT
 $IPT -A OUTPUT -o lo -j ACCEPT
 
 # All TCP sessions should begin with SYN
-$IPT -A INPUT -p tcp ! --syn -m state --state NEW -s $IPB -j DROP
-$IPT -A INPUT -p tcp ! --syn -m state --state NEW -s $IPH -j DROP
+$IPT -A INPUT -p tcp ! --syn -m state --state NEW -s $IP_BASTION -j DROP
+$IPT -A INPUT -p tcp ! --syn -m state --state NEW -s $IP_OTHERHOST -j DROP
 
 # Accept SSH connections from authorized hosts
 $IPT -A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT
